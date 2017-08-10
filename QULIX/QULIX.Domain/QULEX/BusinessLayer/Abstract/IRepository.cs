@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// The Repository interface.
+    /// The Repository interface. It is generic.
     /// </summary>
     /// <typeparam name="T"> </typeparam>
     public interface IRepository<T> : IDisposable
