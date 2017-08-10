@@ -1,0 +1,21 @@
+﻿@model QULIX.Domain.QULEX.BusinessLayer.Entities.Employee
+    
+<tr>
+    <td>@Model.EmployeeId</td>
+    <td>@Model.FirstName</td>
+    <td>@Model.LastName</td>
+    <td>@Model.MiddleName</td>
+    <td>@Model.HiringDate.ToShortDateString()</td>
+    <td>@Html.DisplayFor(m => m.Position)</td>
+    <td>@string.Format("{0} \"{1}\"", Model.Company.CompanyTypeName, Model.Company.CompanyName)</td>
+    <td>
+        @Html.ActionLink("Редактировать", "Edit-Employee", "Home", new { id = Model.EmployeeId }, null)
+    </td>
+    <td>
+        @using (Html.BeginForm("DeleteEmployee", "Home", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.EmployeeId)
+            <a href="#" onclick="$(this).closest('form').submit()">Удалить</a>
+        }
+    </td>
+</tr>

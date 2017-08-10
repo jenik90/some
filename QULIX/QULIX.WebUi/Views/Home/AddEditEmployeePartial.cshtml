@@ -1,0 +1,84 @@
+﻿@using QULIX.Domain.QULEX.BusinessLayer.Entities
+@model Employee
+
+@Html.ValidationSummary(true)
+
+@Html.HiddenFor(m => m.EmployeeId)
+
+<div class="validation-msg-block">
+    @Html.ValidationMessageFor(m => m.LastName)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.LastName, new { @class = "col-sm-3 control-label" })
+    <div class="col-sm-3">
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Введите фамилию сотрудника" })
+    </div>
+</div>
+
+<div class="validation-msg-block">
+    @Html.ValidationMessageFor(m => m.FirstName)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.FirstName, new { @class = "col-sm-3 control-label" })
+    <div class="col-sm-3">
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Введите имя сотрудника" })
+    </div>
+</div>
+
+<div class="validation-msg-block">
+    @Html.ValidationMessageFor(m => m.MiddleName)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.MiddleName, new { @class = "col-sm-3 control-label" })
+    <div class="col-sm-3">
+        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", placeholder = "Введите отчество сотрудника" })
+    </div>
+</div>
+
+<div class="validation-msg-block">
+    @Html.ValidationMessageFor(m => m.HiringDate)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.HiringDate, new { @class = "col-sm-3 control-label" })
+    <div class="col-sm-3">
+        @Html.TextBoxFor(m => m.HiringDate, "{0:MM/dd/yyyy}", new { @class = "form-control", placeholder = "Введите дату приема на работу" })
+    </div>
+</div>
+
+<div class="validation-msg-block">
+    @Html.ValidationMessageFor(m => m.Position)
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Position, new { @class = "col-sm-3 control-label" })
+    <div class="col-sm-3">
+        @Html.EditorFor(m => m.Position, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="validation-msg-block">
+    @Html.ValidationMessageFor(m => m.Company)
+</div>
+<div class="form-group" id="form-group-dogbreed">
+    @Html.LabelFor(m => m.Company.CompanyId, new { @class = "col-sm-3 control-label" })
+    <div class="col-sm-3">
+        @Html.DropDownListFor(
+                m => m.Company.CompanyId,
+                (ViewBag.Companies as IEnumerable<Company>).Select(x =>
+                    new SelectListItem
+                    {
+                        Text = string.Format("{0} {1}", x.CompanyTypeName, x.CompanyName),
+                        Value = x.CompanyId.ToString(),
+                    }).OrderBy(x => x.Text), "Выберите компанию",
+                new { @class = "form-control" }
+                )
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-5">
+        <button type="submit" class="btn btn-primary" style="float:right;">Сохранить</button>
+    </div>
+    <div class="col-md-4">
+        @Html.ActionLink("Отмена", "Employees", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

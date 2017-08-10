@@ -1,0 +1,31 @@
+﻿#loading-element { display: none;}
+#filter{ margin-top: 3em }
+.field-validation-error { color: #f00;}        
+.validation-summary-errors { color: #f00; font-weight: bold;}         
+.input-validation-error { border: 2px solid #f00; background-color: #fee; }        
+input[type="checkbox"].input-validation-error { outline: 2px solid #f00; }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: .8em;
+    text-align: left;
+    border-bottom: .1em solid #ddd;
+}
+.validation-msg-block { margin-left:35em; }
+
+a.tab-link {
+    background-color: #00bfff;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+a.tab-link:hover {
+    background-color: #00ffff;
+}

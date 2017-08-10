@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <title>Сотрудники-компании</title>
+</head>
+<body>
+<div id="ajaxupdate"></div>
+@Html.ActionLink("СПИСОК СОТРУДНИКОВ", "Employees", "Home", null, new { @class = "tab-link" })
+@Html.ActionLink("СПИСОК КОМПАНИЙ", "Companies", "Home", null, new { @class= "tab-link" })
+<div>
+    @if (TempData["Message"] != null)
+    {
+        <div id="temp-message" class="alert alert-success">
+            @TempData["message"]
+        </div>
+    }
+    @RenderBody()
+</div>
+</body>
+</html>
+
+<script>
+    jQuery(document)
+        .ready(function($) {
+            setTimeout(function() { $("#temp-message").remove(); }, 3000);
+        });
+</script>
+
+@RenderSection("scripts", false)

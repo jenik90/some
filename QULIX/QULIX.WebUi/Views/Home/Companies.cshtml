@@ -1,0 +1,112 @@
+﻿@using QULIX.Domain.QULEX.BusinessLayer.Entities
+@model IEnumerable<Company>
+
+@{
+    ViewBag.Title = "Список комапний";
+}
+
+<div id="summaryDisplay" class="display">
+    <h2>Список компаний</h2>
+    <table style="width: 80%;">
+        <thead>
+        <tr>
+            <th>Идентификатор компании</th>
+            <th>Тип компании</th>
+            <th>Наименование компании</th>
+            <th>Количество сотрудников</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        <tr><td colspan="3">The data is loading</td></tr>
+        </tbody>
+    </table>
+    <br />
+    <div>
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <h4>
+                <button id="add" class="btn btn-primary">Добавить</button>
+            </h4>
+        </div>
+    </div>
+</div>
+
+<div id="addDisplay" class="display">
+    <h2>Добавление компании в список</h2>
+    <form id="addForm" class = "form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Наименование компании:</label>
+            <div class="col-sm-3">
+                <input id="addCompanyName" name="CompanyName" class="form-control" placeholder="Введите наименование компании" />
+            </div>
+        </div>
+        @CompanyTypesDropdown("add")
+        <div class="form-group">
+            <div class="col-md-5">
+                <button id="submitAdd" type="submit" class="btn btn-primary" style="float:right;">Сохранить</button>
+            </div>
+            <div class="col-md-4">
+                <a href="javascript:void(0);" class="btn btn-primary back-to-companies">Отмена</a>
+            </div>
+        </div>
+    </form>
+    
+    @AddCompanyTypeLink("add")
+</div>
+
+
+<div id="editDisplay" class="display">
+    <h2>Редактирование компании</h2>
+    <form id="editForm" class = "form-horizontal">
+        <input id="editCompanyId" type="hidden" name="CompanyId" />
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Наименование компании:</label>
+            <div class="col-sm-3">
+                <input id="editCompanyName" name="CompanyName" class="form-control" placeholder="Введите наименование компании" />
+            </div>
+        </div>
+        @CompanyTypesDropdown("edit")
+        <div class="form-group">
+            <div class="col-md-5">
+                <button id="submitEdit" type="submit" class="btn btn-primary" style="float:right;">Сохранить</button>
+            </div>
+            <div class="col-md-4">
+                <a href="javascript:void(0);" class="btn btn-primary back-to-companies">Отмена</a>
+            </div>
+        </div>
+    </form>
+
+    @AddCompanyTypeLink("edit")
+</div>
+
+@helper CompanyTypesDropdown(string idPrefix)
+{
+    string dropdownId = string.Concat(idPrefix, "CompanyTypeId");
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+            Тип компании:
+        </label>
+        <div class="col-sm-6  ajax-form-target">
+            @Html.Action("GetCompanyTypesDropdown", new { dropdownId })
+        </div>
+    </div>
+}
+
+@helper AddCompanyTypeLink(string idPrefix)
+{
+    var ajaxLinkTarget = string.Concat(idPrefix, "-ajax-link-target");
+    var dropdownId = string.Concat(idPrefix, "CompanyTypeId");
+
+    <div class="col-sm-6">
+        @Ajax.ActionLink("Добавить тип компании", "CreateCompanyType", new { dropdownId }, new AjaxOptions { UpdateTargetId = ajaxLinkTarget, LoadingElementId = "loading-element" })
+        <div id="@ajaxLinkTarget"></div>
+        <div id="loading-element">
+            <img src="~/Content/Images/loading.gif" />
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    <script src="~/Scripts/Home/Companies.js"></script>
+}

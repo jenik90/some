@@ -1,0 +1,7 @@
+﻿@model IEnumerable<QULIX.Domain.QULEX.BusinessLayer.Entities.Employee>
+    
+@foreach (var emp in Model)
+{
+    Html.RenderPartial("EmployeeDisplayPartial", emp);
+}
+

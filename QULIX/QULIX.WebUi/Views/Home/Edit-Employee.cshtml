@@ -1,0 +1,14 @@
+﻿@using QULIX.Domain.QULEX.BusinessLayer.Entities
+@model Employee
+
+@{
+    ViewBag.Title = "Редактирование сотрудника";
+}
+
+<h2>Редактирование сотрудника</h2>
+
+@using (Html.BeginForm("Edit-Employee", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    Html.RenderAction("AddEditEmployeePartial", Model);
+}
+

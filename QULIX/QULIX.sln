@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QULIX.Domain", "QULIX.Domain\QULIX.Domain.csproj", "{90F8771B-9327-4B0E-BBA1-C4A4E1CBAF44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QULIX.WebUi", "QULIX.WebUi\QULIX.WebUi.csproj", "{AABA2C63-7219-4048-B68A-0290953F89CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90F8771B-9327-4B0E-BBA1-C4A4E1CBAF44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F8771B-9327-4B0E-BBA1-C4A4E1CBAF44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F8771B-9327-4B0E-BBA1-C4A4E1CBAF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F8771B-9327-4B0E-BBA1-C4A4E1CBAF44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AABA2C63-7219-4048-B68A-0290953F89CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AABA2C63-7219-4048-B68A-0290953F89CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AABA2C63-7219-4048-B68A-0290953F89CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AABA2C63-7219-4048-B68A-0290953F89CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

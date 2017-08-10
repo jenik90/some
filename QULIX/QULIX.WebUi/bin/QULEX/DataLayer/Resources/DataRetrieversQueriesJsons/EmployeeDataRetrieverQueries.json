@@ -1,0 +1,17 @@
+﻿{
+  // Stores SQL queries templates of EmployeeDataRetriever, key is CrudQueries enum
+  "DeleteItemQueryTmpl": 
+    "delete from Employees where EmployeeId = @Parameter1",
+  
+  "InsertItemQueryTmpl": 
+    "insert into Employees(FirstName, LastName, MiddleName, HiringDate, PositionId, CompanyId) values(@Parameter1, @Parameter2, @Parameter3, @Parameter4, @Parameter5, @Parameter6)",
+    
+  "SelectAllItemsQuery": 
+    "select EmployeeId, FirstName, LastName, MiddleName, HiringDate, PositionId, Employees.CompanyID, CompanyName from Employees, Companies where Companies.CompanyId=Employees.CompanyID",
+  
+  "SelectByIdQueryTmpl": 
+    "select EmployeeId, FirstName, LastName, MiddleName, HiringDate, PositionId, Employees.CompanyID, CompanyName from Employees inner join Companies on Employees.CompanyID = Companies.CompanyId where Employees.EmployeeId = @Parameter1",
+  
+  "UpdateItemQueryTmpl": 
+    "update Employees set FirstName = @Parameter1, LastName = @Parameter2, MiddleName = @Parameter3, HiringDate = @Parameter4, PositionId = @Parameter5, CompanyId = @Parameter6 where EmployeeId = @Parameter7"
+}

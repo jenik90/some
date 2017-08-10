@@ -1,0 +1,85 @@
+﻿@using QULIX.Domain.QULEX.BusinessLayer.Entities
+@using QULIX.Domain.QULEX.BusinessLayer.Enums
+@using QULIX.Domain.QULEX.Core.Extensions
+@using QULIX.WebUi.Models.Home
+@model EmployeesFilterModel
+@{
+    ViewBag.Title = "Сотрудники";
+    var ajaxOptions = new AjaxOptions
+    {
+        Url = Url.Action("GetEmployeesData"),
+        LoadingElementId = "",
+        LoadingElementDuration = 1000,
+        OnSuccess = "insertData"
+    };
+}
+
+<h2>Список сотрудников</h2>
+<div style="overflow:auto;">
+    <div class="col-md-10">
+        <table>
+            <thead>
+                <tr>
+                    <th>Идентификатор</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Дата приема на работу</th>
+                    <th>Должность</th>
+                    <th>Организация</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                @Html.Action("GetEmployeesData", new { employeesModel = Model })
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-2 form-group" id="filter">
+        @using (Ajax.BeginForm(ajaxOptions))
+        {
+            <div>
+                @Html.LabelFor(m => m.CompanyId, new {@class = "control-label" } )
+                @Html.DropDownListFor(m => m.CompanyId, (ViewBag.Companies as IEnumerable<Company>).Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.CompanyTypeName, x.CompanyName), Value = x.CompanyId.ToString(), }).OrderBy(x => x.Text), "Выберите компанию", new { @class = "form-control" })
+                
+                
+                @Html.LabelFor(m => m.EmployeePosition, new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.EmployeePosition, Enum.GetValues(typeof(Position)).Cast<Enum>().Select(m =>
+                    {
+                        string enumVal = Enum.GetName(typeof(Position), m);
+                        return new SelectListItem { Text = m.GetEnumStringValue(), Value = enumVal };
+                    }), "Выбирите должность", new { @class = "form-control" })
+                <br/>
+                <button type="submit" class="btn btn-primary">Подобрать</button>
+            </div>
+        }
+    </div>
+</div>
+
+<br/>
+<div>
+    <div class="col-md-9"></div>
+    <div class="col-md-3">
+        <h4>
+            @Html.ActionLink("Добавить", "Add-Employee")
+        </h4>
+    </div>
+</div>
+
+@section scripts
+{
+<script type="text/javascript">
+    function insertData(data) {
+        var target = $("#tableBody"); target.empty();
+        for (var i = 0; i < data.length; i++) {
+            var employee = data[i];
+            target.append("<tr><td>" + employee.EmployeeId + "</td><td>" + employee.FirstName + "</td><td>" + employee.LastName + "</td><td>" + employee.MiddleName + "</td><td>" +
+                employee.HiringDate + "</td><td>" + employee.Position + "</td><td>" + employee.Company +
+                "</td><td>" + "<a href='/Home/Edit-Employee/" + employee.EmployeeId + "'>Редактировать</a>" +
+                "</td><td>" + "<form action='/Home/DeleteEmployee' method='post'><input type='hidden' name='EmployeeId' value='" + employee.EmployeeId + "'/><a href='#' onclick='$(this).closest('form').submit()'>Удалить</a>" +
+                "</td></tr>");
+        }
+    }
+</script>
+
+}

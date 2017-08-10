@@ -1,0 +1,16 @@
+﻿{
+  // Stores SQL queries templates of CompanyTypeDataRetriever, key is CrudQueries enum
+  "DeleteItemQueryTmpl": 
+    "delete from CompanyTypes where CompanyTypeId = @Parameter1",
+  
+  "InsertItemQueryTmpl": 
+    "insert into CompanyTypes(CompanyTypeName) values(@Parameter1)",
+
+  "SelectAllItemsQuery": "select CompanyTypes.CompanyTypeId, CompanyTypeName, RelatedCompanies = stuff((select ',' + CompanyName from CompanyTypes, Companies for xml path ('')), 1, 1, '') from CompanyTypes, Companies group by CompanyTypes.CompanyTypeId, CompanyTypeName",
+
+  "SelectByIdQueryTmpl": 
+    "select CompanyTypes.CompanyTypeId, CompanyTypeName, RelatedCompanies = stuff((select ',' + CompanyName from CompanyTypes, Companies for xml path ('')), 1, 1, '') from CompanyTypes, Companies where CompanyTypes.CompanyTypeId = @Parameter1 group by CompanyTypes.CompanyTypeId, CompanyTypeName",
+
+  "UpdateItemQueryTmpl": 
+    "update CompanyTypes set CompanyTypeName = @Parameter1 where CompanyTypeId = @Parameter2"
+}

@@ -1,0 +1,23 @@
+﻿@model QULIX.WebUi.Models.Home.CompanyTypeDropdownModel
+<div class="col-sm-6">
+    <select name="CompanyTypeId" id="@Model.CompanyTypeDropdownId" class = "form-control" autocomplete="off">
+        @{
+            if (Model.CompanyTypes != null)
+            {
+                bool selected = true;
+                foreach (var compType in Model.CompanyTypes)
+                {
+                    if (selected)
+                    {
+                        <option value="@compType.CompanyTypeId" selected="selected">@compType.CompanyTypeName</option>
+                        selected = false;
+                    }
+                    else
+                    {
+                        <option value="@compType.CompanyTypeId">@compType.CompanyTypeName</option>
+                    }
+                }
+            }
+        }
+    </select>
+</div>
